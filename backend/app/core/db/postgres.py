@@ -1,10 +1,13 @@
+"""
+Engine de conexão com PostgreSQL.
+"""
+
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 from backend.app.core.settings import settings
 
-POSTGRES_URL = (
-    f"postgresql+psycopg2://"
+DATABASE_URL = (
+    "postgresql+psycopg2://"
     f"{settings.POSTGRES_USER}:"
     f"{settings.POSTGRES_PASSWORD}@"
     f"{settings.POSTGRES_HOST}:"
@@ -13,13 +16,8 @@ POSTGRES_URL = (
 )
 
 engine = create_engine(
-    POSTGRES_URL,
-    pool_pre_ping=True,
+    DATABASE_URL,
+    echo=False,
     future=True,
-)
-
-SessionLocal = sessionmaker(
-    bind=engine,
-    autoflush=False,
-    autocommit=False,
+    pool_pre_ping=True,
 )

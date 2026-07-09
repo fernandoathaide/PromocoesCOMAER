@@ -12,3 +12,4 @@ rich
 typer
 httpx
 pytest
+PyYAML

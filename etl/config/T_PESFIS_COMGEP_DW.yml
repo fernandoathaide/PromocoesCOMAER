@@ -1,0 +1,44 @@
+source:
+  schema: SIG
+  table: T_PESFIS_COMGEP_DW
+
+target:
+  schema: raw
+  table: militar
+
+primary_key:
+  - NR_ORDEM
+
+filters:
+  PESFIS_TYPE: ATIVO
+
+  SG_POSTO:
+    - CL
+    - BR
+    - MB
+    - TB
+
+columns:
+  - NR_ORDEM
+  - NR_ANTIG
+  - NM_PESSOA
+  - NM_GUERRA
+  - SG_POSTO
+  - SG_QDR
+  - SG_ORG
+  - DT_NASC
+  - DT_PRACA
+  - DT_PROMOCAO_ATUAL
+  - DT_CONC_FRM
+  - DT_MOV_ATUAL
+  - DT_APRES_ATUAL
+  - DT_ULT_APRES
+  - SG_SIT_QDR
+  - NR_SIT_QDR
+  - ST_MOV
+  - ST_VETERANO
+  - ST_ESPECIAL
+  - VL_MED_CFR
+  - TX_TEMPO_SERVICO
+  - CD_POSTO
+  - CD_QDR
