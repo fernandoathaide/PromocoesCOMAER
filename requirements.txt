@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+psycopg2-binary
+oracledb
+pandas
+numpy
+python-dotenv
+pydantic-settings
+rich
+typer
+httpx
+pytest

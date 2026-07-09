@@ -1,0 +1,64 @@
+[project]
+name = "promocoescomaer"
+version = "0.1.0"
+description = "Sistema de Apoio à Decisão para Promoções do COMAER"
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+    { name = "Fernando Athaide" }
+]
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy>=2.0",
+    "alembic",
+    "psycopg2-binary",
+    "oracledb",
+    "pandas",
+    "numpy",
+    "python-dotenv",
+    "pydantic-settings",
+    "rich",
+    "typer",
+    "httpx",
+        "pytest",
+
+    # Validação
+    "pydantic",
+
+    # Datas
+    "python-dateutil",
+
+    # YAML
+    "pyyaml",
+
+    # JWT (para autenticação futura)
+    "python-jose[cryptography]",
+
+    # Senhas
+    "passlib[bcrypt]",
+
+    # Upload de arquivos
+    "python-multipart"
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "."
+]
+
+testpaths = [
+    "tests"
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I"
+]
