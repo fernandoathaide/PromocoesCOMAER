@@ -1,11 +1,12 @@
 """
-Extractor Oracle do PromocoesCOMAER.
+Oracle Extractor
 
-Responsável pela leitura das tabelas Oracle e retorno dos
-dados em DataFrame Pandas.
+Responsável pela leitura das tabelas Oracle.
 """
 
 from __future__ import annotations
+
+from pathlib import Path
 
 import oracledb
 import pandas as pd
@@ -16,19 +17,24 @@ from backend.app.core.settings import settings
 
 
 class OracleExtractor:
-    """Classe responsável pela conexão e leitura do Oracle."""
+    """
+    Classe responsável pela conexão e leitura do Oracle.
+    """
 
     def __init__(self):
+
         self.connection = None
 
-    def connect(self):
-        """Abre conexão com o Oracle."""
+    def connect(self) -> None:
+        """
+        Abre conexão Oracle.
+        """
 
-        logger.info("Conectando ao Oracle...")
+        logger.info("Conectando Oracle...")
 
         dsn = oracledb.makedsn(
-            settings.ORACLE_HOST,
-            settings.ORACLE_PORT,
+            host=settings.ORACLE_HOST,
+            port=settings.ORACLE_PORT,
             service_name=settings.ORACLE_SERVICE,
         )
 
@@ -40,17 +46,29 @@ class OracleExtractor:
 
         logger.info("Oracle conectado.")
 
-    def disconnect(self):
-        """Fecha conexão."""
+    def disconnect(self) -> None:
+        """
+        Fecha conexão Oracle.
+        """
 
-        if self.connection:
+        if self.connection is not None:
             self.connection.close()
+
             logger.info("Oracle desconectado.")
 
-    def load_config(self, config_file: str) -> dict:
-        """Carrega o arquivo YAML da tabela."""
+    def load_config(
+        self,
+        config_file: str | Path,
+    ) -> dict:
+        """
+        Carrega configuração YAML.
+        """
 
-        with open(config_file, encoding="utf-8") as file:
+        with open(
+            config_file,
+            "r",
+            encoding="utf-8",
+        ) as file:
             return yaml.safe_load(file)
 
     def build_sql(
@@ -59,12 +77,12 @@ class OracleExtractor:
         limit: int | None = None,
     ) -> str:
         """
-        Monta dinamicamente o SELECT a partir do YAML.
+        Gera dinamicamente o SQL.
         """
 
-        columns = ",\n    ".join(config["columns"])
-
         source = config["source"]
+
+        columns = ",\n    ".join(config["columns"])
 
         sql = f"""
 SELECT
@@ -75,32 +93,33 @@ FROM {source["schema"]}.{source["table"]}
         filters = config.get("filters")
 
         if filters:
-            where = []
+            conditions = []
 
             for field, value in filters.items():
                 if isinstance(value, list):
-                    values = ", ".join(f"'{v}'" for v in value)
+                    values = ", ".join(f"'{item}'" for item in value)
 
-                    where.append(f"{field} IN ({values})")
+                    conditions.append(f"{field} IN ({values})")
 
                 else:
-                    where.append(f"{field} = '{value}'")
+                    conditions.append(f"{field} = '{value}'")
 
             sql += "\nWHERE\n    "
-            sql += "\n    AND ".join(where)
 
-        if limit is not None:
+            sql += "\n    AND ".join(conditions)
+
+        if limit:
             sql += f"\nFETCH FIRST {limit} ROWS ONLY"
 
         return sql
 
-    def fetch_dataframe(
+    def extract(
         self,
-        config_file: str,
+        config_file: str | Path,
         limit: int | None = None,
     ) -> pd.DataFrame:
         """
-        Executa a consulta Oracle e retorna um DataFrame.
+        Extrai dados do Oracle para DataFrame.
         """
 
         if self.connection is None:
@@ -109,11 +128,14 @@ FROM {source["schema"]}.{source["table"]}
         config = self.load_config(config_file)
 
         sql = self.build_sql(
-            config=config,
-            limit=limit,
+            config,
+            limit,
         )
 
-        logger.info("SQL gerada:")
+        print("\n========== SQL GERADA ==========")
+        print(sql)
+        print("================================\n")
+
         logger.info(sql)
 
         cursor = self.connection.cursor()
@@ -131,7 +153,7 @@ FROM {source["schema"]}.{source["table"]}
             )
 
             logger.info(
-                "Consulta concluída (%s registros).",
+                "Registros encontrados: %s",
                 len(dataframe),
             )
 
