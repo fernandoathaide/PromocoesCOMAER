@@ -1,8 +1,14 @@
-CREATE TABLE config.business_rules
+-- ============================================================
+-- PromocoesCOMAER
+-- Migration V002
+-- Tabelas de configuração
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS config.business_rules
 (
     id                  BIGSERIAL PRIMARY KEY,
 
-    code                VARCHAR(20) UNIQUE NOT NULL,
+    code                VARCHAR(30) UNIQUE NOT NULL,
 
     name                VARCHAR(200) NOT NULL,
 
@@ -14,11 +20,11 @@ CREATE TABLE config.business_rules
 
     parameter           VARCHAR(100),
 
-    parameter_value     VARCHAR(100),
+    parameter_value     VARCHAR(255),
 
-    enabled             BOOLEAN DEFAULT TRUE,
+    enabled             BOOLEAN NOT NULL DEFAULT TRUE,
 
-    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     updated_at          TIMESTAMP
 );

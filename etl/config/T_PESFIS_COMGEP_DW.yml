@@ -4,7 +4,7 @@ source:
 
 target:
   schema: raw
-  table: militar
+  table: t_pesfis_comgep_dw
 
 primary_key:
   - NR_ORDEM
