@@ -229,3 +229,8 @@ __marimo__/
 # Python
 *.pyc
 __pycache__/
+
+*.zip
+*.bak
+*.dump
+*.tar.gz
