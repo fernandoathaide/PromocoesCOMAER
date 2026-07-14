@@ -1,11 +1,10 @@
 """
-Value Object Posto.
+Value Object - Posto Militar.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import cast
 
 from domain.enums.codigo_posto import CodigoPosto
 
@@ -13,71 +12,62 @@ from domain.enums.codigo_posto import CodigoPosto
 @dataclass(frozen=True)
 class Posto:
     """
-    Value Object que representa um posto militar.
+    Representa um posto militar do COMAER.
     """
 
-    codigo: CodigoPosto | str
+    codigo: CodigoPosto
 
-    def __post_init__(self):
-
-        if isinstance(self.codigo, str):
-            object.__setattr__(
-                self,
-                "codigo",
-                CodigoPosto(self.codigo.upper()),
-            )
-
-    @property
-    def enum(self) -> CodigoPosto:
-        return cast(CodigoPosto, self.codigo)
+    @classmethod
+    def from_sig(cls, codigo: str) -> "Posto":
+        """
+        Cria um Posto a partir do código existente na base SIG.
+        Ex.: CL, BR, MB...
+        """
+        return cls(CodigoPosto(codigo.upper().strip()))
 
     @property
     def nome(self) -> str:
-        return self.enum.nome
+        return self.codigo.nome
 
     @property
     def nivel(self) -> int:
-        return self.enum.nivel
+        return self.codigo.nivel
 
     @property
     def proximo(self) -> "Posto | None":
 
-        codigo = self.enum.proximo
-
-        if codigo is None:
+        if self.codigo.proximo is None:
             return None
 
-        return Posto(codigo)
+        return Posto(self.codigo.proximo)
 
     @property
     def anterior(self) -> "Posto | None":
 
-        codigo = self.enum.anterior
-
-        if codigo is None:
+        if self.codigo.anterior is None:
             return None
 
-        return Posto(codigo)
+        return Posto(self.codigo.anterior)
 
     @property
     def eh_coronel(self) -> bool:
-        return self.enum is CodigoPosto.CORONEL
+        return self.codigo is CodigoPosto.CORONEL
 
     @property
     def eh_brigadeiro(self) -> bool:
-        return self.enum is CodigoPosto.BRIGADEIRO
+        return self.codigo is CodigoPosto.BRIGADEIRO
 
     @property
     def eh_major_brigadeiro(self) -> bool:
-        return self.enum is CodigoPosto.MAJOR_BRIGADEIRO
+        return self.codigo is CodigoPosto.MAJOR_BRIGADEIRO
 
     @property
     def eh_tenente_brigadeiro(self) -> bool:
-        return self.enum is CodigoPosto.TENENTE_BRIGADEIRO
+        return self.codigo is CodigoPosto.TENENTE_BRIGADEIRO
 
     @property
     def eh_marechal(self) -> bool:
-        return self.enum is CodigoPosto.MARECHAL_DO_AR
+        return self.codigo is CodigoPosto.MARECHAL_DO_AR
 
     def __lt__(self, other: "Posto") -> bool:
         return self.nivel < other.nivel
@@ -95,4 +85,4 @@ class Posto:
         return self.nome
 
     def __repr__(self) -> str:
-        return f"Posto({self.enum.value})"
+        return f"Posto('{self.codigo.value}')"

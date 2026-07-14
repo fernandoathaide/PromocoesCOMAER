@@ -3,6 +3,7 @@
 Digital Twin do processo de promoções
 
 # ghp
+
 ## _xT0dtqnujO1QsozKywqAj0V04xwwb92aZlsw ##
 
 | Item         | Padrão              |
@@ -34,3 +35,15 @@ logging.py
 ↓
 
 database.py
+
+source .venv/bin/activate
+python -m pip show oracledb
+python -m backend.app.infrastructure.etl.jobs.sync_pesfis
+psql -U postgres -d postgres
+
+git pull
+uv sync
+
+## uv run alembic upgrade head    # se o projeto usar migrations
+
+uv run uvicorn backend.app.main:app --reload

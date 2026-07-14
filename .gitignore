@@ -232,5 +232,5 @@ __pycache__/
 
 *.zip
 *.bak
-*.dump
+# *.dump
 *.tar.gz
