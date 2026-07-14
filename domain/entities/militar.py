@@ -199,6 +199,55 @@ class Militar:
         return (date.today() - self.data_promocao).days
 
     @property
+    def esta_na_reserva(self) -> bool:
+        """
+        Indica se o militar está na reserva.
+
+        Nesta primeira versão todos os registros
+        sincronizados são militares da ativa.
+        """
+
+        return False
+
+    @property
+    def esta_na_ativa(self) -> bool:
+        """
+        Indica se o militar está na ativa.
+        """
+
+        return not self.esta_na_reserva
+
+    @property
+    def pode_ser_promovido(self) -> bool:
+        """
+        Primeira regra de promoção.
+
+        Nesta Sprint todo militar da ativa pode
+        participar da simulação.
+
+        As regras reais serão acrescentadas
+        nas próximas Sprints.
+        """
+
+        return self.esta_na_ativa
+
+    @property
+    def possui_proximo_posto(self) -> bool:
+        """
+        Indica se existe um posto superior.
+        """
+
+        return self.proximo_posto is not None
+
+    @property
+    def ultimo_posto(self) -> bool:
+        """
+        Indica se já atingiu o topo da carreira.
+        """
+
+        return self.proximo_posto is None
+
+    @property
     def proxima_patente(self) -> Posto | None:
         """
         Alias para o próximo posto.
