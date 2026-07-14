@@ -34,23 +34,31 @@ class Quadro:
         CodigoQuadro.QOEMET: "QUADRO DE OFICIAIS ESPECIALISTAS EM METEOROLOGIA",
     }
 
+    def __post_init__(self):
+
+        if not isinstance(self.codigo, CodigoQuadro):
+            raise TypeError(
+                "Quadro deve ser criado com CodigoQuadro ou através de Quadro.from_codigo()."
+            )
+
     @classmethod
     def from_codigo(
         cls,
         codigo: str,
     ) -> "Quadro":
 
-        return cls(CodigoQuadro(codigo.upper().strip()))
+        try:
+            return cls(CodigoQuadro(codigo.upper().strip()))
+
+        except ValueError as exc:
+            raise ValueError(f"Quadro inválido: {codigo}") from exc
 
     @property
     def descricao(self) -> str:
-
         return self._QUADROS[self.codigo]
 
     def __str__(self) -> str:
-
         return self.descricao
 
     def __repr__(self) -> str:
-
         return f"Quadro(codigo='{self.codigo.value}')"

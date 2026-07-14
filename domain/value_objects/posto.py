@@ -40,13 +40,27 @@ class Posto:
         },
     }
 
+    def __post_init__(self):
+
+        if not isinstance(self.codigo, CodigoPosto):
+            raise TypeError(
+                "Posto deve ser criado com CodigoPosto ou através de Posto.from_codigo()."
+            )
+
     @classmethod
-    def from_codigo(cls, codigo: str) -> "Posto":
+    def from_codigo(
+        cls,
+        codigo: str,
+    ) -> "Posto":
         """
         Cria um Posto a partir do código textual.
         """
 
-        return cls(CodigoPosto(codigo.upper().strip()))
+        try:
+            return cls(CodigoPosto(codigo.upper().strip()))
+
+        except ValueError as exc:
+            raise ValueError(f"Posto inválido: {codigo}") from exc
 
     @property
     def nome(self) -> str:
