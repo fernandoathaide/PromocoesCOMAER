@@ -1,246 +1,454 @@
-# PromocoesCOMAER
-
-## Vision Document (VISION.md)
-
-**Versão:** 1.0
-**Status:** Em desenvolvimento
-**Projeto:** PromocoesCOMAER
-**Licença:** GNU General Public License v3.0
-
----
+# VISION.md
 
 # Visão do Projeto
 
-O **PromocoesCOMAER** é uma plataforma de apoio à decisão desenvolvida para atuar como um **Digital Twin (Gêmeo Digital)** do processo de promoções dos Oficiais-Generais da Força Aérea Brasileira (COMAER).
+**Projeto:** PromocoesCOMAER
 
-Seu objetivo é permitir que analistas e gestores realizem estudos, projeções, simulações e análises estratégicas sobre promoções, efetivos, vagas e passagens para a reserva, utilizando dados corporativos provenientes dos sistemas oficiais do COMAER.
+**Versão:** 0.4.0
 
-O sistema não substituirá os sistemas corporativos existentes. Sua finalidade é fornecer um ambiente analítico seguro para apoiar estudos técnicos e decisões estratégicas.
-
----
-
-# Missão
-
-Desenvolver uma plataforma moderna de apoio à decisão capaz de reproduzir virtualmente o processo de promoções do COMAER, permitindo análises históricas, projeções de efetivo, simulações de cenários e geração de indicadores estratégicos baseados em dados oficiais.
+**Status:** Sprint 4 – Baseline
 
 ---
 
-# Visão de Futuro
+# 1. Introdução
 
-Ser a principal plataforma de análise estratégica do processo de promoções do COMAER, oferecendo recursos avançados de simulação, inteligência analítica e apoio à decisão baseados em Inteligência Artificial.
+O **PromocoesCOMAER** é uma plataforma de apoio à decisão desenvolvida para a **Secretaria de Promoções (SECPROM)** da Força Aérea Brasileira (COMAER).
 
----
+O projeto nasceu da necessidade de modernizar os estudos relacionados ao processo de promoções dos Oficiais-Generais, substituindo análises manuais e planilhas por uma plataforma analítica moderna, segura e escalável.
 
-# Objetivos Estratégicos
-
-* Centralizar dados relevantes para análise de promoções.
-* Construir uma base analítica independente do ambiente transacional Oracle.
-* Possibilitar simulações de múltiplos cenários.
-* Produzir indicadores gerenciais e estatísticos.
-* Automatizar estudos atualmente realizados por planilhas.
-* Disponibilizar painéis interativos.
-* Explicar resultados utilizando Inteligência Artificial.
-* Evoluir continuamente conforme novas regras de negócio forem surgindo.
+Mais do que um sistema de consulta, o PromocoesCOMAER foi concebido como um **Digital Twin (Gêmeo Digital)** do processo de promoções, permitindo reproduzir virtualmente diferentes cenários antes da tomada de decisão.
 
 ---
 
-# Escopo Inicial (MVP)
+# 2. Missão
 
-A primeira versão do sistema contemplará:
-
-* Importação de dados do Oracle corporativo.
-* Banco PostgreSQL para análise.
-* ETL automatizado.
-* Cadastro de parâmetros de simulação.
-* Pesquisa de militares.
-* Visualização individual do militar.
-* Dashboard executivo.
-* Simulações de promoções.
-* Simulações de passagem para reserva.
-* Indicadores estatísticos.
-* Exportação de resultados.
+Disponibilizar uma plataforma moderna de apoio à decisão capaz de transformar dados corporativos em conhecimento estratégico, permitindo análises, projeções e simulações confiáveis sobre promoções, efetivos e reservas dos Oficiais-Generais do COMAER.
 
 ---
 
-# Escopo Funcional
+# 3. Visão
 
-O sistema deverá permitir:
-
-## Consulta
-
-* Pesquisar militares.
-* Filtrar por posto, quadro, organização e situação.
-* Visualizar histórico funcional.
-
-## Simulação
-
-* Alterar quantidade de vagas.
-* Alterar parâmetros de promoção.
-* Alterar regras de reserva.
-* Simular múltiplos anos.
-* Comparar cenários.
-
-## Indicadores
-
-* Efetivo atual.
-* Efetivo projetado.
-* Promoções previstas.
-* Reservas previstas.
-* Déficit ou excesso de vagas.
-* Distribuição por posto.
-* Evolução temporal.
+Ser a principal plataforma institucional de análise estratégica do processo de promoções do COMAER, oferecendo recursos avançados de simulação, indicadores gerenciais e Inteligência Artificial para apoiar decisões baseadas em dados.
 
 ---
 
-# Público-Alvo
+# 4. Valores
+
+O desenvolvimento do PromocoesCOMAER é orientado pelos seguintes princípios:
+
+* Confiabilidade.
+* Transparência.
+* Rastreabilidade.
+* Segurança da informação.
+* Simplicidade.
+* Escalabilidade.
+* Documentação contínua.
+* Qualidade de software.
+* Apoio à decisão baseado em evidências.
+
+---
+
+# 5. Problema
+
+Atualmente, grande parte dos estudos relacionados às promoções militares depende da consolidação manual de informações provenientes de diferentes sistemas corporativos.
+
+Esse processo apresenta limitações como:
+
+* Alto consumo de tempo.
+* Dependência de planilhas.
+* Dificuldade para reproduzir cenários.
+* Baixa rastreabilidade.
+* Pouca automação.
+* Limitações na geração de indicadores.
+
+Além disso, os sistemas corporativos existentes possuem finalidade operacional e não foram concebidos para realizar análises prospectivas ou simulações estratégicas.
+
+---
+
+# 6. Solução Proposta
+
+O PromocoesCOMAER propõe uma arquitetura analítica composta por:
+
+* Base PostgreSQL independente.
+* Processo automatizado de ETL.
+* API REST.
+* Interface Web moderna.
+* Motor de Simulação.
+* Rule Engine.
+* Dashboards executivos.
+* Integração futura com Inteligência Artificial.
+
+Essa arquitetura permitirá estudar cenários complexos sem qualquer impacto sobre os sistemas oficiais.
+
+---
+
+# 7. Objetivos Estratégicos
+
+## Curto Prazo
+
+* Construir a infraestrutura do projeto.
+* Implantar o banco PostgreSQL.
+* Automatizar a importação dos dados Oracle.
+* Disponibilizar APIs REST.
+
+---
+
+## Médio Prazo
+
+* Implementar o Motor de Simulação.
+* Disponibilizar dashboards gerenciais.
+* Automatizar indicadores.
+* Consolidar regras de negócio.
+
+---
+
+## Longo Prazo
+
+* Inteligência Artificial.
+* Modelos preditivos.
+* Estudos probabilísticos.
+* Apoio completo à tomada de decisão.
+
+---
+
+# 8. Público-Alvo
+
+A plataforma destina-se principalmente a:
 
 * Analistas da SECPROM.
 * Gestores do COMAER.
 * Administradores do sistema.
+* Equipes de Tecnologia da Informação.
 * Usuários autorizados.
 
 ---
 
-# Postos contemplados
+# 9. Escopo
 
-Inicialmente o sistema contemplará os seguintes postos:
+## Incluído
 
-* Coronel do Ar (Cel / CL-Ar)
-* Brigadeiro do Ar (Br / Br-Ar)
-* Major-Brigadeiro do Ar (Maj Brig / MB-Ar)
-* Tenente-Brigadeiro do Ar (Ten Brig / TB-Ar)
-* Marechal do Ar (quando aplicável)
+O sistema permitirá:
 
-A arquitetura permitirá expansão para outros postos futuramente.
+* Importar dados do Oracle.
+* Manter uma base analítica própria.
+* Consultar militares.
+* Consultar promoções.
+* Consultar vagas.
+* Projetar efetivos.
+* Simular promoções.
+* Simular reservas.
+* Gerar indicadores.
+* Emitir relatórios.
+* Apoiar decisões estratégicas.
 
 ---
 
-# Princípios Arquiteturais
+## Fora do Escopo
 
-O PromocoesCOMAER será construído seguindo os seguintes princípios:
+O PromocoesCOMAER **não** realizará:
 
-* Separação entre dados transacionais e analíticos.
+* Alterações na base Oracle.
+* Processamento oficial das promoções.
+* Publicação de atos administrativos.
+* Alteração de dados corporativos.
+* Substituição dos sistemas institucionais do COMAER.
+
+Sua função é exclusivamente analítica e de apoio à decisão.
+
+---
+
+# 10. Objetivos Funcionais
+
+A plataforma deverá permitir:
+
+## Consultas
+
+* Pesquisar militares.
+* Consultar histórico funcional.
+* Visualizar promoções.
+* Consultar efetivos.
+* Consultar vagas.
+
+---
+
+## Simulações
+
+* Criar cenários.
+* Alterar parâmetros.
+* Simular alterações de vagas.
+* Simular alterações legislativas.
+* Projetar promoções futuras.
+* Comparar cenários.
+
+---
+
+## Indicadores
+
+* Efetivo atual.
+* Promoções previstas.
+* Reservas previstas.
+* Tempo médio no posto.
+* Distribuição por quadro.
+* Evolução histórica.
+
+---
+
+# 11. Objetivos Não Funcionais
+
+O sistema deverá apresentar:
+
+* Alta disponibilidade.
 * Arquitetura modular.
-* Regras de negócio independentes da interface gráfica.
-* APIs REST.
-* Versionamento completo via Git.
-* Desenvolvimento orientado por documentação.
-* Código limpo e testável.
-* Alta rastreabilidade.
+* Escalabilidade.
+* Segurança.
+* Desempenho.
+* Facilidade de manutenção.
+* Código testável.
+* Documentação completa.
 
 ---
 
-# Arquitetura Geral
+# 12. Arquitetura Conceitual
 
-```text
-Oracle (SIG)
-        │
-        ▼
- ETL Python
-        │
-        ▼
- PostgreSQL
-        │
-        ▼
- Simulation Engine
-        │
-        ▼
- FastAPI
-        │
-        ▼
- React + Apache ECharts
-        │
-        ▼
- Usuário
+```text id="8wnv9d"
+Oracle SIG
+
+      │
+
+      ▼
+
+ETL Python
+
+      │
+
+      ▼
+
+PostgreSQL
+
+RAW
+
+↓
+
+CORE
+
+↓
+
+ANALYTICS
+
+↓
+
+Simulation Engine
+
+↓
+
+FastAPI
+
+↓
+
+React
+
+↓
+
+Usuário
 ```
 
 ---
 
-# Motor de Simulação
+# 13. Princípios Arquiteturais
 
-O Motor de Simulação constitui o núcleo do sistema.
+O PromocoesCOMAER adota os seguintes princípios:
 
-Será responsável por:
+* Arquitetura em camadas.
+* Separação entre dados operacionais e analíticos.
+* APIs REST.
+* Clean Architecture.
+* Domain-Driven Design (DDD).
+* Versionamento do banco via Alembic.
+* Desenvolvimento orientado por documentação.
+* Baixo acoplamento.
+* Alta coesão.
 
-* Calcular probabilidades de promoção.
-* Projetar efetivos.
+---
+
+# 14. Motor de Simulação
+
+O Motor de Simulação constitui o principal diferencial do sistema.
+
+Ele será responsável por:
+
+* Aplicar regras de negócio.
+* Simular promoções.
 * Simular reservas.
-* Simular alterações de vagas.
-* Simular alterações de legislação.
-* Gerar rankings.
-* Gerar indicadores.
-* Produzir justificativas para cada resultado.
+* Projetar efetivos.
+* Calcular probabilidades.
+* Explicar resultados.
 
-O Motor de Simulação será completamente independente da interface gráfica, permitindo reutilização por APIs, aplicações futuras e agentes de Inteligência Artificial.
+Todas as decisões serão fundamentadas em regras documentadas.
 
 ---
 
-# Inteligência Artificial
+# 15. Inteligência Artificial
 
-O sistema será preparado para integração com modelos de IA, como GPT-5.5 e Claude Sonnet.
+O projeto foi concebido para integração com modelos de IA.
 
-A IA deverá ser capaz de:
+Entre as funcionalidades previstas:
 
-* Responder perguntas em linguagem natural.
-* Explicar resultados das simulações.
-* Gerar relatórios executivos.
-* Identificar tendências.
-* Auxiliar analistas durante os estudos.
+* Explicação de cenários.
+* Perguntas em linguagem natural.
+* Geração automática de relatórios.
+* Interpretação de indicadores.
+* Apoio técnico aos analistas.
 
----
-
-# O que o sistema NÃO fará
-
-O PromocoesCOMAER não substituirá os sistemas corporativos do COMAER.
-
-Também não realizará:
-
-* Alterações na base Oracle.
-* Processamento oficial de promoções.
-* Publicação de atos administrativos.
-* Atualização de dados corporativos.
-
-Toda a análise será realizada sobre uma base analítica própria.
+A IA atuará como apoio à decisão, sem substituir a análise humana.
 
 ---
 
-# Roadmap
+# 16. Situação Atual
 
-## Fase 1
+Ao final da Sprint 4, o projeto possui:
 
-* Fundação do projeto
-* Arquitetura
-* Banco PostgreSQL
-* ETL Oracle → PostgreSQL
+## Arquitetura
 
-## Fase 2
-
-* API FastAPI
-* Interface React
-* Dashboards
-
-## Fase 3
-
-* Motor de Simulação
-* Indicadores
-* Relatórios
-
-## Fase 4
-
-* Inteligência Artificial
-* Explicação de cenários
-* Recomendações
-
-## Fase 5
-
-* Simulações avançadas
-* Modelos preditivos
-* Machine Learning
+* Estrutura consolidada.
+* Organização em camadas.
 
 ---
 
-# Filosofia do Projeto
+## Banco de Dados
 
-O PromocoesCOMAER não é apenas um sistema de consultas.
+* PostgreSQL configurado.
+* Schemas definidos.
+* Alembic configurado.
 
-Seu propósito é transformar dados corporativos em conhecimento estratégico, oferecendo aos analistas ferramentas modernas para compreender o presente, projetar o futuro e avaliar o impacto de diferentes cenários antes da tomada de decisão.
+---
+
+## Backend
+
+* FastAPI.
+* SQLAlchemy.
+* Estrutura modular.
+
+---
+
+## ETL
+
+* Estrutura inicial.
+* Processo Oracle → PostgreSQL.
+
+---
+
+## Ambiente
+
+* Python.
+* uv.
+* Docker.
+* GitHub.
+
+---
+
+## Documentação
+
+Documentação técnica estruturada.
+
+---
+
+# 17. Roadmap
+
+## Sprint 1
+
+Fundação do projeto.
+
+✅ Concluída
+
+---
+
+## Sprint 2
+
+Infraestrutura.
+
+✅ Concluída
+
+---
+
+## Sprint 3
+
+Arquitetura.
+
+✅ Concluída
+
+---
+
+## Sprint 4
+
+Consolidação.
+
+✅ Concluída
+
+---
+
+## Sprint 5
+
+Primeiras funcionalidades.
+
+🚧 Planejada
+
+---
+
+## Sprint 6
+
+Motor de Simulação.
+
+📅 Planejada
+
+---
+
+## Sprint 7
+
+Inteligência Artificial.
+
+📅 Planejada
+
+---
+
+## Sprint 8
+
+Preparação para produção.
+
+📅 Planejada
+
+---
+
+# 18. Indicadores de Sucesso
+
+O projeto será considerado bem-sucedido quando:
+
+* Os estudos deixarem de depender de planilhas.
+* As simulações forem reproduzíveis.
+* Os indicadores forem gerados automaticamente.
+* O tempo de elaboração dos estudos for significativamente reduzido.
+* As decisões puderem ser fundamentadas por evidências e regras documentadas.
+* O sistema estiver preparado para evolução contínua.
+
+---
+
+# 19. Riscos
+
+Principais riscos identificados:
+
+* Alterações nas regras de promoção.
+* Mudanças na estrutura do Oracle.
+* Crescimento do volume de dados.
+* Evolução das normas institucionais.
+* Dependências de infraestrutura.
+
+Todos os riscos deverão ser monitorados durante o ciclo de vida do projeto.
+
+---
+
+# 20. Considerações Finais
+
+O PromocoesCOMAER representa uma evolução significativa na forma como os estudos de promoções poderão ser conduzidos no âmbito da SECPROM.
+
+Ao combinar arquitetura moderna, banco de dados analítico, Motor de Simulação e Inteligência Artificial, a plataforma permitirá transformar grandes volumes de dados em informações estratégicas, contribuindo para decisões mais rápidas, fundamentadas e transparentes.
+
+A arquitetura foi concebida para evoluir continuamente, acompanhando mudanças nas regras de negócio, na legislação e nas necessidades da Força Aérea Brasileira, preservando sempre os princípios de segurança, rastreabilidade e confiabilidade.
