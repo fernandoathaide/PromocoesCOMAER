@@ -100,6 +100,67 @@ class Militar:
     def eh_marechal(self) -> bool:
         return self.posto.eh_marechal
 
+    @property
+    def eh_oficial_general(self) -> bool:
+        """
+        Indica se pertence ao círculo de Oficiais-Generais.
+        """
+
+        return (
+            self.eh_brigadeiro
+            or self.eh_major_brigadeiro
+            or self.eh_tenente_brigadeiro
+            or self.eh_marechal
+        )
+
+    @property
+    def eh_qoav(self) -> bool:
+        return self.quadro.codigo.value == "QOAV"
+
+    @property
+    def eh_qoint(self) -> bool:
+        return self.quadro.codigo.value == "QOINT"
+
+    @property
+    def eh_qomed(self) -> bool:
+        return self.quadro.codigo.value == "QOMED"
+
+    @property
+    def eh_qodent(self) -> bool:
+        return self.quadro.codigo.value == "QODENT"
+
+    @property
+    def eh_qofarm(self) -> bool:
+        return self.quadro.codigo.value == "QOFARM"
+
+    @property
+    def eh_qoinf(self) -> bool:
+        return self.quadro.codigo.value == "QOINF"
+
+    @property
+    def eh_qoeng(self) -> bool:
+        return self.quadro.codigo.value == "QOENG"
+
+    @property
+    def eh_qocapl(self) -> bool:
+        return self.quadro.codigo.value == "QOCAPL"
+
+    @property
+    def anos_no_servico(self) -> int:
+        """
+        Retorna apenas os anos de tempo de serviço.
+        """
+
+        return self.tempo_servico.anos
+
+    @property
+    def proxima_patente(self) -> Posto | None:
+        """
+        Alias para o próximo posto.
+        """
+
+        return self.proximo_posto
+
     def __str__(self) -> str:
 
         return f"{self.nome_guerra} ({self.posto})"
