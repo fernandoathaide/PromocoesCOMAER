@@ -1,8 +1,7 @@
 """
 Entity Militar.
 
-Representa um Oficial-General do COMAER dentro do domínio
-do PromocoesCOMAER.
+Representa um Oficial do COMAER dentro do domínio da aplicação.
 """
 
 from __future__ import annotations
@@ -45,10 +44,73 @@ class Militar:
 
     data_promocao: date
 
-    media_cfr: float | None = None
+    media_cfr: float
+
+    situacao_quadro: str | None = None
+
+    numero_situacao: str | None = None
+
+    movimentacao: str | None = None
 
     veterano: bool = False
 
     especial: bool = False
 
-    movimentado: bool = False
+    @property
+    def posto_atual(self) -> Posto:
+        return self.posto
+
+    @property
+    def proximo_posto(self) -> Posto | None:
+        return self.posto.proximo
+
+    @property
+    def nome_guerra(self) -> str:
+        return self.nome.guerra
+
+    @property
+    def nome_completo(self) -> str:
+        return self.nome.completo
+
+    @property
+    def anos_servico(self) -> int:
+        return self.tempo_servico.anos
+
+    @property
+    def idade_anos(self) -> int:
+        return self.idade.anos
+
+    @property
+    def eh_coronel(self) -> bool:
+        return self.posto.eh_coronel
+
+    @property
+    def eh_brigadeiro(self) -> bool:
+        return self.posto.eh_brigadeiro
+
+    @property
+    def eh_major_brigadeiro(self) -> bool:
+        return self.posto.eh_major_brigadeiro
+
+    @property
+    def eh_tenente_brigadeiro(self) -> bool:
+        return self.posto.eh_tenente_brigadeiro
+
+    @property
+    def eh_marechal(self) -> bool:
+        return self.posto.eh_marechal
+
+    def __str__(self) -> str:
+
+        return f"{self.nome_guerra} ({self.posto})"
+
+    def __repr__(self) -> str:
+
+        return (
+            "Militar("
+            f"numero_ordem={self.numero_ordem}, "
+            f"nome='{self.nome_guerra}', "
+            f"posto='{self.posto}', "
+            f"quadro='{self.quadro.codigo.value}'"
+            ")"
+        )
