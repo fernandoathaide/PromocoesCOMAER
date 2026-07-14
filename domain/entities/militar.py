@@ -6,7 +6,7 @@ Representa um Oficial do COMAER dentro do domínio da aplicação.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 
 from domain.value_objects.antiguidade import Antiguidade
@@ -268,4 +268,26 @@ class Militar:
             f"posto='{self.posto}', "
             f"quadro='{self.quadro.codigo.value}'"
             ")"
+        )
+
+    def clone(self) -> "Militar":
+        """
+        Retorna uma cópia do militar.
+        """
+
+        return replace(self)
+
+    def promover(self) -> "Militar":
+        """
+        Retorna uma nova instância promovida.
+
+        O objeto original permanece inalterado.
+        """
+
+        if self.proximo_posto is None:
+            return self.clone()
+
+        return replace(
+            self,
+            posto=self.proximo_posto,
         )
