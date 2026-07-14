@@ -154,6 +154,51 @@ class Militar:
         return self.tempo_servico.anos
 
     @property
+    def tempo_no_posto(self) -> int:
+        """
+        Tempo no posto atual em anos completos.
+        """
+
+        from datetime import date
+
+        hoje = date.today()
+
+        anos = hoje.year - self.data_promocao.year
+
+        if (
+            hoje.month,
+            hoje.day,
+        ) < (
+            self.data_promocao.month,
+            self.data_promocao.day,
+        ):
+            anos -= 1
+
+        return anos
+
+    @property
+    def meses_no_posto(self) -> int:
+        """
+        Tempo no posto atual em meses.
+        """
+
+        from datetime import date
+
+        hoje = date.today()
+
+        return (hoje.year - self.data_promocao.year) * 12 + (hoje.month - self.data_promocao.month)
+
+    @property
+    def dias_no_posto(self) -> int:
+        """
+        Tempo no posto atual em dias.
+        """
+
+        from datetime import date
+
+        return (date.today() - self.data_promocao).days
+
+    @property
     def proxima_patente(self) -> Posto | None:
         """
         Alias para o próximo posto.
