@@ -1,0 +1,33 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "FastAPI",
+			"type": "debugpy",
+			"request": "launch",
+			"module": "uvicorn",
+			"args": [
+				"backend.app.main:app",
+				"--reload"
+			],
+			"jinja": true,
+			"justMyCode": true
+		},
+		{
+			"name": "React (Chrome)",
+			"type": "pwa-chrome",
+			"request": "launch",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}/frontend"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Backend + Frontend",
+			"configurations": [
+				"FastAPI",
+				"React (Chrome)"
+			]
+		}
+	]
+}
