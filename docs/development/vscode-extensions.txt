@@ -1,6 +1,5 @@
 aaron-bond.better-comments
 alexcvzz.vscode-sqlite
-augment.vscode-augment
 bradlc.vscode-tailwindcss
 charliermarsh.ruff
 christian-kohler.path-intellisense
@@ -9,7 +8,9 @@ continue.continue
 cweijan.dbclient-jdbc
 cweijan.vscode-postgresql-client2
 damildrizzy.fastapi-snippets
+davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
+donjayamanne.githistory
 donjayamanne.python-environment-manager
 dsznajder.es7-react-js-snippets
 eamodio.gitlens
@@ -28,7 +29,11 @@ mikestead.dotenv
 ms-azuretools.vscode-containers
 ms-azuretools.vscode-docker
 ms-ceintl.vscode-language-pack-pt-br
+ms-dotnettools.vscode-dotnet-runtime
 ms-kubernetes-tools.vscode-kubernetes-tools
+ms-mssql.data-workspace-vscode
+ms-mssql.sql-bindings-vscode
+ms-mssql.sql-database-projects-vscode
 ms-python.debugpy
 ms-python.python
 ms-python.vscode-pylance
