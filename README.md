@@ -1,6 +1,46 @@
 # PromocoesCOMAER
 
 Digital Twin do processo de promoções
+uv sync
+source .venv/bin/activate
+uvicorn backend.app.main:app --reload
+ 1244  uv venv
+ 1245  python -m venv .venv
+ 1246  python3 --version
+ 1247  sudo apt update
+ 1248  sudo apt install python3.10-venv python3-pip
+ 1249  curl -LsSf https://astral.sh/uv/install.sh | sh
+ 1250  python3 --version
+ 1251  uv --version
+ 1252  uv venv
+ 1253  source .venv/bin/activate
+ 1254  uv sync
+ 1255  uvicorn backend.app.main:app --reload
+ 1256  uname -a
+ 1257  psql --version
+ 1258  sudo apt update
+ 1259  sudo apt install postgresql postgresql-contrib
+ 1260  sudo apt install postgresql-client libpq-dev
+ 1261  psql --version
+ 1262  sudo systemctl status postgresql
+ 1263  pg_lsclusters
+ 1264  sudo -u postgres psql
+ 1265  psql -h localhost -U postgres -d promocoescomaer
+ 1266  sudo nano /etc/postgresql/14/main/postgresql.conf
+ 1267  sudo systemctl restart postgresql
+ 1268  sudo nano /etc/postgresql/14/main/pg_hba.conf
+ 1269  udo ifconfig
+ 1270  sudo ifconfig
+ 1271  sudo nano /etc/postgresql/14/main/pg_hba.conf
+ 1272  sudo systemctl restart postgresql
+ 1273  sudo systemctl status postgresql
+ 1274  uvicorn backend.app.main:app --reload
+ 1275  git status
+ 1276  git add .
+ 1277  git commit -m "130726 - Configura ambiente de desenvolvimento local CASA."
+ 1278  git push
+ 1279  git config --global credential.helper store
+
 
 # ghp
 
