@@ -98,6 +98,33 @@ class MotorSimulacao:
 
         return promocao
 
+    def promover_mais_antigo(
+        self,
+        posto: str,
+        quadro: str,
+    ):
+        """
+        Promove o militar mais antigo de um
+        determinado posto e quadro.
+        """
+
+        militares = self.militares(
+            posto,
+            quadro,
+        )
+
+        if not militares:
+            return None
+
+        militar = min(
+            militares,
+            key=lambda m: m.antiguidade.inteiro,
+        )
+
+        return self.promover(
+            militar,
+        )
+
     def fechar(self):
 
         self.repository.close()
