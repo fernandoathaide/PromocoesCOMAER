@@ -23,6 +23,7 @@ class SimulacaoResumoResponse(BaseModel):
 
     elegiveis: int
 
+
 class SimulacaoExecutadaResponse(BaseModel):
     """
     Resultado completo da execução da simulação.
