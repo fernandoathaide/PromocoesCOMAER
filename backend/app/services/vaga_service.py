@@ -1,52 +1,98 @@
 """
-Service responsável pelo gerenciamento das vagas da simulação.
+Service responsável pelo gerenciamento
+das vagas da simulação.
 """
 
 from __future__ import annotations
 
-from collections import defaultdict
-
 from domain.entities.vaga import Vaga
+from domain.value_objects.posto import Posto
+from domain.value_objects.quadro import Quadro
 
 
 class VagaService:
     """
-    Serviço responsável pelas vagas disponíveis.
+    Gerencia todas as vagas da simulação.
     """
 
     def __init__(self):
 
-        self._vagas = defaultdict(dict)
+        self._vagas: dict[
+            tuple[str, str],
+            Vaga,
+        ] = {}
 
-    def adicionar(self, vaga: Vaga):
+    def carregar(self):
 
-        self._vagas[vaga.posto.codigo.value][vaga.quadro.codigo.value] = vaga
+        self._vagas.clear()
 
-    def buscar(
+    def obter(
         self,
-        posto: str,
-        quadro: str,
+        posto: Posto,
+        quadro: Quadro,
     ) -> Vaga | None:
 
         return self._vagas.get(
-            posto.upper(),
-            {},
-        ).get(quadro.upper())
+            (
+                posto.codigo.value,
+                quadro.codigo.value,
+            )
+        )
 
-    def listar(self):
+    def abrir(
+        self,
+        posto: Posto,
+        quadro: Quadro,
+    ) -> Vaga:
 
-        resultado = []
+        chave = (
+            posto.codigo.value,
+            quadro.codigo.value,
+        )
 
-        for vagas in self._vagas.values():
-            resultado.extend(vagas.values())
+        vaga = self._vagas.get(chave)
 
-        return resultado
+        if vaga is None:
+            vaga = Vaga(
+                posto=posto,
+                quadro=quadro,
+                quantidade=1,
+            )
+
+            self._vagas[chave] = vaga
+
+        else:
+            vaga.liberar()
+
+        return vaga
+
+    def ocupar(
+        self,
+        posto: Posto,
+        quadro: Quadro,
+    ) -> bool:
+
+        vaga = self.obter(
+            posto,
+            quadro,
+        )
+
+        if vaga is None:
+            return False
+
+        if not vaga.possui_vaga:
+            return False
+
+        vaga.ocupar()
+
+        return True
 
     @property
-    def quantidade(self) -> int:
+    def vagas(self):
 
-        return len(self.listar())
+        return list(self._vagas.values())
 
-    def limpar(self):
+    @property
+    def quantidade(self):
 
-        self._vagas.clear()
+        return len(self._vagas)
