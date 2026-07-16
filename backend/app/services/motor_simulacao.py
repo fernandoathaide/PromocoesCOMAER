@@ -162,6 +162,34 @@ class MotorSimulacao:
                 militar,
             )
 
+    def adicionar_na_fila(
+        self,
+        militar,
+    ):
+        """
+        Adiciona um militar às filas do posto
+        atual, mantendo a ordenação por antiguidade.
+        """
+
+        posto = militar.posto.codigo.value
+        quadro = militar.quadro.codigo.value
+
+        self._por_posto[posto].append(militar)
+        self._por_quadro[quadro].append(militar)
+        self._por_posto_quadro[(posto, quadro)].append(militar)
+
+        self._por_posto[posto].sort(
+            key=lambda m: m.antiguidade.inteiro,
+        )
+
+        self._por_quadro[quadro].sort(
+            key=lambda m: m.antiguidade.inteiro,
+        )
+
+        self._por_posto_quadro[(posto, quadro)].sort(
+            key=lambda m: m.antiguidade.inteiro,
+        )
+
     def promover(
         self,
         militar,
@@ -180,6 +208,12 @@ class MotorSimulacao:
         #
         self.remover_da_fila(
             militar,
+        )
+
+        novo_militar = militar.promover()
+
+        self.adicionar_na_fila(
+            novo_militar,
         )
 
         #
