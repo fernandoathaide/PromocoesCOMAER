@@ -118,6 +118,13 @@ class MotorSimulacao:
 
         self.indicador.abrir_vaga()
 
+        #
+        # Promoção em cascata
+        #
+        self.promover_proximo_posto(
+            promocao,
+        )
+
         return promocao
 
     @property
@@ -163,6 +170,28 @@ class MotorSimulacao:
 
         return self.promover(
             militar,
+        )
+
+    def promover_proximo_posto(
+        self,
+        promocao,
+    ):
+        """
+        Promove automaticamente o militar
+        do posto imediatamente inferior,
+        pertencente ao mesmo quadro.
+        """
+
+        posto = promocao.posto_origem
+
+        anterior = posto.anterior
+
+        if anterior is None:
+            return None
+
+        return self.promover_mais_antigo(
+            anterior.codigo.value,
+            promocao.militar.quadro.codigo.value,
         )
 
     def proximo_elegivel(
