@@ -15,7 +15,12 @@ class VagaService:
     Gerencia todas as vagas da simulação.
     """
 
-    def __init__(self):
+    def __init__(
+        self,
+        indicador=None,
+    ):
+
+        self.indicador = indicador
 
         self._vagas: dict[
             tuple[str, str],
@@ -64,6 +69,9 @@ class VagaService:
         else:
             vaga.liberar()
 
+        if self.indicador is not None:
+            self.indicador.abrir_vaga()
+
         return vaga
 
     def ocupar(
@@ -84,6 +92,9 @@ class VagaService:
             return False
 
         vaga.ocupar()
+
+        if self.indicador is not None:
+            self.indicador.ocupar_vaga()
 
         return True
 

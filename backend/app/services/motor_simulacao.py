@@ -37,7 +37,9 @@ class MotorSimulacao:
 
         self.cascata_service = CascataService()
 
-        self.vaga_service = VagaService()
+        self.vaga_service = VagaService(
+            self.indicador,
+        )
 
         self.promocao_service.indicador = self.indicador
 
@@ -59,6 +61,7 @@ class MotorSimulacao:
 
         self.simulacao = Simulacao()
         self.indicador = Indicador()
+        self.vaga_service.indicador = self.indicador
         self.promocao_service.indicador = self.indicador
         self.vaga_service.carregar()
 
@@ -128,8 +131,6 @@ class MotorSimulacao:
             promocao.posto_origem,
             promocao.militar.quadro,
         )
-
-        self.indicador.abrir_vaga()
 
         self.simulacao.adicionar_promocao(
             promocao,
