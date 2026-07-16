@@ -42,6 +42,26 @@ class Indicador:
 
         return self.promocoes > 0
 
+    @property
+    def quantidade_promocoes(self) -> int:
+        return self.promocoes
+
+    @property
+    def quantidade_reservas(self) -> int:
+        return self.reservas
+
+    @property
+    def quantidade_vagas_abertas(self) -> int:
+        return self.vagas_abertas
+
+    @property
+    def quantidade_vagas_ocupadas(self) -> int:
+        return self.vagas_ocupadas
+
+    @property
+    def quantidade_elegiveis(self) -> int:
+        return self.militares_elegiveis
+
     def registrar_promocao(self) -> None:
         self.promocoes += 1
 

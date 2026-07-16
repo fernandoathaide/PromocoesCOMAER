@@ -12,6 +12,7 @@ from collections import defaultdict
 
 from backend.app.repositories.militar_repository import MilitarRepository
 from backend.app.services.promocao_service import PromocaoService
+from domain.entities.indicador import Indicador
 from domain.entities.simulacao import Simulacao
 
 
@@ -27,6 +28,7 @@ class MotorSimulacao:
         self.promocao_service = PromocaoService()
 
         self.simulacao = Simulacao()
+        self.indicador = Indicador()
 
         self._por_posto = defaultdict(list)
 
@@ -45,6 +47,7 @@ class MotorSimulacao:
         self._por_posto_quadro.clear()
 
         self.simulacao = Simulacao()
+        self.indicador = Indicador()
 
         militares = self.repository.listar()
 
@@ -108,6 +111,8 @@ class MotorSimulacao:
             promocao,
         )
 
+        self.indicador.registrar_promocao()
+
         return promocao
 
     @property
@@ -118,6 +123,20 @@ class MotorSimulacao:
         """
 
         return self.simulacao.quantidade_promocoes
+
+    @property
+    def quantidade_promocoes_indicador(self) -> int:
+        """
+        Quantidade de promoções registradas
+        pelo indicador da simulação.
+        """
+
+        return self.indicador.promocoes
+
+    @property
+    def indicadores(self):
+
+        return self.indicador
 
     def promover_mais_antigo(
         self,
