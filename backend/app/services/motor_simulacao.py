@@ -257,8 +257,9 @@ class MotorSimulacao:
         militar,
     ):
         """
-        Registra a reserva de um militar
-        na simulação.
+        Registra uma reserva e inicia
+        automaticamente a cascata
+        de promoções.
         """
 
         reserva = self.reserva_service.registrar(
@@ -267,6 +268,24 @@ class MotorSimulacao:
 
         self.simulacao.adicionar_reserva(
             reserva,
+        )
+
+        #
+        # A abertura da vaga ocorre no
+        # posto e quadro do militar.
+        #
+        self.vaga_service.abrir(
+            militar.posto,
+            militar.quadro,
+        )
+
+        #
+        # Procura automaticamente
+        # o próximo elegível.
+        #
+        self.promover_mais_antigo(
+            militar.posto.codigo.value,
+            militar.quadro.codigo.value,
         )
 
         return reserva
