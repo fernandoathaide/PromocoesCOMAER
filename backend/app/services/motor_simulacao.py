@@ -11,6 +11,7 @@ from __future__ import annotations
 from collections import defaultdict
 
 from backend.app.repositories.militar_repository import MilitarRepository
+from backend.app.services.promocao_service import PromocaoService
 from domain.entities.simulacao import Simulacao
 
 
@@ -22,6 +23,8 @@ class MotorSimulacao:
     def __init__(self):
 
         self.repository = MilitarRepository()
+
+        self.promocao_service = PromocaoService()
 
         self._por_posto = defaultdict(list)
 
@@ -82,6 +85,18 @@ class MotorSimulacao:
                 quadro.upper(),
             )
         ]
+
+    def promover(
+        self,
+        militar,
+    ):
+        """
+        Executa a promoção de um militar.
+        """
+
+        promocao = self.promocao_service.promover(militar)
+
+        return promocao
 
     def fechar(self):
 
