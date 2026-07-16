@@ -13,6 +13,7 @@ from collections import defaultdict
 from backend.app.repositories.militar_repository import MilitarRepository
 from backend.app.services.cascata_service import CascataService
 from backend.app.services.promocao_service import PromocaoService
+from backend.app.services.vaga_service import VagaService
 from domain.entities.indicador import Indicador
 from domain.entities.simulacao import Simulacao
 
@@ -28,6 +29,7 @@ class MotorSimulacao:
 
         self.promocao_service = PromocaoService()
         self.cascata_service = CascataService()
+        self.vaga_service = VagaService()
 
         self.simulacao = Simulacao()
         self.indicador = Indicador()
@@ -50,6 +52,7 @@ class MotorSimulacao:
 
         self.simulacao = Simulacao()
         self.indicador = Indicador()
+        self.vaga_service.carregar()
 
         militares = self.repository.listar()
 
@@ -118,6 +121,11 @@ class MotorSimulacao:
         #
         self.indicador.registrar_promocao()
 
+        vaga = self.vaga_service.abrir(
+            promocao.posto_origem,
+            promocao.militar.quadro,
+        )
+
         self.indicador.abrir_vaga()
 
         #
@@ -152,6 +160,16 @@ class MotorSimulacao:
     def indicadores(self):
 
         return self.indicador
+
+    @property
+    def vagas(self):
+
+        return self.vaga_service.vagas
+
+    @property
+    def quantidade_vagas(self):
+
+        return self.vaga_service.quantidade
 
     def promover_mais_antigo(
         self,
