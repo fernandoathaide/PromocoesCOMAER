@@ -27,12 +27,19 @@ class MotorSimulacao:
 
         self.repository = MilitarRepository()
 
-        self.promocao_service = PromocaoService()
+        self.simulacao = Simulacao()
+
+        self.indicador = Indicador()
+
+        self.promocao_service = PromocaoService(
+            self.indicador,
+        )
+
         self.cascata_service = CascataService()
+
         self.vaga_service = VagaService()
 
-        self.simulacao = Simulacao()
-        self.indicador = Indicador()
+        self.promocao_service.indicador = self.indicador
 
         self._por_posto = defaultdict(list)
 
@@ -52,6 +59,7 @@ class MotorSimulacao:
 
         self.simulacao = Simulacao()
         self.indicador = Indicador()
+        self.promocao_service.indicador = self.indicador
         self.vaga_service.carregar()
 
         militares = self.repository.listar()
@@ -112,14 +120,9 @@ class MotorSimulacao:
             militar,
         )
 
-        self.simulacao.adicionar_promocao(
-            promocao,
-        )
-
         #
         # Cada promoção gera uma vaga
         #
-        self.indicador.registrar_promocao()
 
         vaga = self.vaga_service.abrir(
             promocao.posto_origem,
@@ -127,6 +130,10 @@ class MotorSimulacao:
         )
 
         self.indicador.abrir_vaga()
+
+        self.simulacao.adicionar_promocao(
+            promocao,
+        )
 
         #
         # Delega a cascata ao serviço
