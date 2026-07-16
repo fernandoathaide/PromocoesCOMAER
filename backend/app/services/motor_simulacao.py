@@ -26,6 +26,8 @@ class MotorSimulacao:
 
         self.promocao_service = PromocaoService()
 
+        self.simulacao = Simulacao()
+
         self._por_posto = defaultdict(list)
 
         self._por_quadro = defaultdict(list)
@@ -38,13 +40,16 @@ class MotorSimulacao:
         e cria os índices necessários para
         o algoritmo de simulação.
         """
+        self._por_posto.clear()
+        self._por_quadro.clear()
+        self._por_posto_quadro.clear()
 
-        simulacao = Simulacao()
+        self.simulacao = Simulacao()
 
         militares = self.repository.listar()
 
         for militar in militares:
-            simulacao.adicionar_militar(militar)
+            self.simulacao.adicionar_militar(militar)
 
             self._por_posto[militar.posto.codigo.value].append(militar)
 
@@ -57,7 +62,7 @@ class MotorSimulacao:
                 )
             ].append(militar)
 
-        return simulacao
+        return self.simulacao
 
     def militares_do_posto(
         self,
@@ -92,11 +97,27 @@ class MotorSimulacao:
     ):
         """
         Executa a promoção de um militar.
+        o resultado na simulação.
         """
 
-        promocao = self.promocao_service.promover(militar)
+        promocao = self.promocao_service.promover(
+            militar,
+        )
+
+        self.simulacao.adicionar_promocao(
+            promocao,
+        )
 
         return promocao
+
+    @property
+    def quantidade_promocoes(self):
+        """
+        Retorna a quantidade de promoções
+        registradas na simulação.
+        """
+
+        return self.simulacao.quantidade_promocoes
 
     def promover_mais_antigo(
         self,

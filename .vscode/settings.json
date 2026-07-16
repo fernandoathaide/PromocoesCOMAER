@@ -13,6 +13,9 @@
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
   "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  "editor.detectIndentation": false,
 
   "editor.quickSuggestions": {
     "other": true,
