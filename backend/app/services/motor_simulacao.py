@@ -153,6 +153,28 @@ class MotorSimulacao:
         determinado posto e quadro.
         """
 
+        militar = self.proximo_elegivel(
+            posto,
+            quadro,
+        )
+
+        if militar is None:
+            return None
+
+        return self.promover(
+            militar,
+        )
+
+    def proximo_elegivel(
+        self,
+        posto: str,
+        quadro: str,
+    ):
+        """
+        Retorna o militar mais antigo do posto
+        informado dentro do quadro informado.
+        """
+
         militares = self.militares(
             posto,
             quadro,
@@ -161,13 +183,9 @@ class MotorSimulacao:
         if not militares:
             return None
 
-        militar = min(
+        return min(
             militares,
-            key=lambda m: m.antiguidade.inteiro,
-        )
-
-        return self.promover(
-            militar,
+            key=lambda militar: militar.antiguidade.inteiro,
         )
 
     def fechar(self):
