@@ -87,6 +87,24 @@ class MotorSimulacao:
                 )
             ].append(militar)
 
+        #
+        # Ordena todas as listas por antiguidade.
+        #
+        for lista in self._por_posto.values():
+            lista.sort(
+                key=lambda militar: militar.antiguidade.inteiro,
+            )
+
+        for lista in self._por_quadro.values():
+            lista.sort(
+                key=lambda militar: militar.antiguidade.inteiro,
+            )
+
+        for lista in self._por_posto_quadro.values():
+            lista.sort(
+                key=lambda militar: militar.antiguidade.inteiro,
+            )
+
         return self.simulacao
 
     def militares_do_posto(
@@ -247,10 +265,7 @@ class MotorSimulacao:
         if not militares:
             return None
 
-        return min(
-            militares,
-            key=lambda militar: militar.antiguidade.inteiro,
-        )
+        return militares[0]
 
     def registrar_reserva(
         self,
