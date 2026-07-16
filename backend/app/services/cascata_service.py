@@ -5,7 +5,6 @@ promoção em cascata.
 
 from __future__ import annotations
 
-from domain.entities.promocao import Promocao
 from domain.simulation.cascata import Cascata
 
 
@@ -21,13 +20,16 @@ class CascataService:
     def executar(
         self,
         motor,
-        promocao: Promocao,
+        promocao,
     ) -> None:
         """
-        Executa um passo da cascata.
+        Executa toda a cascata de promoções.
 
-        Nesta primeira versão apenas promove
-        o militar imediatamente inferior.
+        Para cada promoção realizada,
+        procura automaticamente o militar
+        mais antigo do posto imediatamente
+        inferior, até não existirem mais
+        postos abaixo.
         """
 
         posto_anterior = self.cascata.posto_anterior(
@@ -37,7 +39,18 @@ class CascataService:
         if posto_anterior is None:
             return
 
-        motor.promover_mais_antigo(
+        nova_promocao = motor.promover_mais_antigo(
             posto_anterior.codigo.value,
             promocao.militar.quadro.codigo.value,
+        )
+
+        if nova_promocao is None:
+            return
+
+        #
+        # Continua a cascata
+        #
+        self.executar(
+            motor,
+            nova_promocao,
         )
