@@ -111,7 +111,12 @@ class MotorSimulacao:
             promocao,
         )
 
+        #
+        # Cada promoção gera uma vaga
+        #
         self.indicador.registrar_promocao()
+
+        self.indicador.abrir_vaga()
 
         return promocao
 

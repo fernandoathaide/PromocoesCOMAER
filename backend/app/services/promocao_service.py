@@ -2,32 +2,27 @@
 Service responsável pelas promoções.
 """
 
-from __future__ import annotations
-
 from datetime import date
 
-from domain.entities.militar import Militar
 from domain.entities.promocao import Promocao
 
 
 class PromocaoService:
     """
-    Serviço responsável pelas promoções militares.
+    Regras referentes às promoções.
     """
 
     def promover(
         self,
-        militar: Militar,
+        militar,
     ) -> Promocao:
         """
-        Promove um militar para o posto imediatamente superior.
+        Promove um militar para o próximo posto.
         """
 
-        novo = militar.promover()
-
         return Promocao(
-            militar=novo,
+            militar=militar,
             posto_origem=militar.posto,
-            posto_destino=novo.posto,
+            posto_destino=militar.proximo_posto,
             data=date.today(),
         )
