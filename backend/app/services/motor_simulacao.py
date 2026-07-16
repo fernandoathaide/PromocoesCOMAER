@@ -13,6 +13,7 @@ from collections import defaultdict
 from backend.app.repositories.militar_repository import MilitarRepository
 from backend.app.services.cascata_service import CascataService
 from backend.app.services.promocao_service import PromocaoService
+from backend.app.services.reserva_service import ReservaService
 from backend.app.services.vaga_service import VagaService
 from domain.entities.indicador import Indicador
 from domain.entities.simulacao import Simulacao
@@ -32,6 +33,10 @@ class MotorSimulacao:
         self.indicador = Indicador()
 
         self.promocao_service = PromocaoService(
+            self.indicador,
+        )
+
+        self.reserva_service = ReservaService(
             self.indicador,
         )
 
@@ -61,8 +66,9 @@ class MotorSimulacao:
 
         self.simulacao = Simulacao()
         self.indicador = Indicador()
-        self.vaga_service.indicador = self.indicador
         self.promocao_service.indicador = self.indicador
+        self.reserva_service.indicador = self.indicador
+        self.vaga_service.indicador = self.indicador
         self.vaga_service.carregar()
 
         militares = self.repository.listar()
@@ -245,6 +251,25 @@ class MotorSimulacao:
             militares,
             key=lambda militar: militar.antiguidade.inteiro,
         )
+
+    def registrar_reserva(
+        self,
+        militar,
+    ):
+        """
+        Registra a reserva de um militar
+        na simulação.
+        """
+
+        reserva = self.reserva_service.registrar(
+            militar,
+        )
+
+        self.simulacao.adicionar_reserva(
+            reserva,
+        )
+
+        return reserva
 
     def fechar(self):
 
