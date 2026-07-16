@@ -134,6 +134,34 @@ class MotorSimulacao:
             )
         ]
 
+    def remover_da_fila(
+        self,
+        militar,
+    ):
+        """
+        Remove um militar das filas de elegibilidade.
+        """
+
+        posto = militar.posto.codigo.value
+
+        quadro = militar.quadro.codigo.value
+
+        if militar in self._por_posto[posto]:
+            self._por_posto[posto].remove(militar)
+
+        if militar in self._por_quadro[quadro]:
+            self._por_quadro[quadro].remove(militar)
+
+        chave = (
+            posto,
+            quadro,
+        )
+
+        if militar in self._por_posto_quadro[chave]:
+            self._por_posto_quadro[chave].remove(
+                militar,
+            )
+
     def promover(
         self,
         militar,
@@ -144,6 +172,13 @@ class MotorSimulacao:
         """
 
         promocao = self.promocao_service.promover(
+            militar,
+        )
+
+        #
+        # Remove o militar promovido das filas
+        #
+        self.remover_da_fila(
             militar,
         )
 
@@ -224,28 +259,6 @@ class MotorSimulacao:
         return self.promover(
             militar,
         )
-
-    # def promover_proximo_posto(
-    #     self,
-    #     promocao,
-    # ):
-    #     """
-    #     Promove automaticamente o militar
-    #     do posto imediatamente inferior,
-    #     pertencente ao mesmo quadro.
-    #     """
-
-    #     posto = promocao.posto_origem
-
-    #     anterior = posto.anterior
-
-    #     if anterior is None:
-    #         return None
-
-    #     return self.promover_mais_antigo(
-    #         anterior.codigo.value,
-    #         promocao.militar.quadro.codigo.value,
-    #     )
 
     def proximo_elegivel(
         self,
