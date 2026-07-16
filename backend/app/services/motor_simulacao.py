@@ -11,6 +11,7 @@ from __future__ import annotations
 from collections import defaultdict
 
 from backend.app.repositories.militar_repository import MilitarRepository
+from backend.app.services.cascata_service import CascataService
 from backend.app.services.promocao_service import PromocaoService
 from domain.entities.indicador import Indicador
 from domain.entities.simulacao import Simulacao
@@ -26,6 +27,7 @@ class MotorSimulacao:
         self.repository = MilitarRepository()
 
         self.promocao_service = PromocaoService()
+        self.cascata_service = CascataService()
 
         self.simulacao = Simulacao()
         self.indicador = Indicador()
@@ -119,9 +121,10 @@ class MotorSimulacao:
         self.indicador.abrir_vaga()
 
         #
-        # Promoção em cascata
+        # Delega a cascata ao serviço
         #
-        self.promover_proximo_posto(
+        self.cascata_service.executar(
+            self,
             promocao,
         )
 
@@ -172,27 +175,27 @@ class MotorSimulacao:
             militar,
         )
 
-    def promover_proximo_posto(
-        self,
-        promocao,
-    ):
-        """
-        Promove automaticamente o militar
-        do posto imediatamente inferior,
-        pertencente ao mesmo quadro.
-        """
+    # def promover_proximo_posto(
+    #     self,
+    #     promocao,
+    # ):
+    #     """
+    #     Promove automaticamente o militar
+    #     do posto imediatamente inferior,
+    #     pertencente ao mesmo quadro.
+    #     """
 
-        posto = promocao.posto_origem
+    #     posto = promocao.posto_origem
 
-        anterior = posto.anterior
+    #     anterior = posto.anterior
 
-        if anterior is None:
-            return None
+    #     if anterior is None:
+    #         return None
 
-        return self.promover_mais_antigo(
-            anterior.codigo.value,
-            promocao.militar.quadro.codigo.value,
-        )
+    #     return self.promover_mais_antigo(
+    #         anterior.codigo.value,
+    #         promocao.militar.quadro.codigo.value,
+    #     )
 
     def proximo_elegivel(
         self,
