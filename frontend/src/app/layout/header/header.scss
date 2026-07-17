@@ -1,19 +1,31 @@
-header {
+.header {
 
   height: 64px;
 
-  background: #003b6f;
+}
 
-  color: white;
+.titulo {
 
-  display: flex;
-
-  align-items: center;
-
-  padding: 0 20px;
+  margin-left: 12px;
 
   font-size: 22px;
 
-  font-weight: bold;
+  font-weight: 500;
+
+}
+
+.spacer {
+
+  flex: 1;
+
+}
+
+.versao {
+
+  margin-right: 16px;
+
+  font-size: 14px;
+
+  opacity: .85;
 
 }
