@@ -1,3 +1,20 @@
-<h1>Dashboard</h1>
+<h2>Dashboard</h2>
 
-<p>Promoções COMAER</p>
+@if (simulacao) {
+
+<p>Militares: {{ simulacao.militares }}</p>
+
+<p>Promoções: {{ simulacao.promocoes }}</p>
+
+<p>Reservas: {{ simulacao.reservas }}</p>
+
+<p>Vagas: {{ simulacao.vagas }}</p>
+
+<p>Elegíveis: {{ simulacao.elegiveis }}</p>
+
+}
+@else {
+
+<p>Carregando...</p>
+
+}
