@@ -1,15 +1,16 @@
-.shell {
-  display: flex;
-  min-height: calc(100vh - 128px);
+.container {
+  height: calc(100vh - 64px);
 }
 
-.sidebar {
+mat-sidenav {
   width: 260px;
   border-right: 1px solid #e5e7eb;
+  background: #ffffff;
 }
 
 .content {
-  flex: 1;
+  min-height: calc(100vh - 64px);
   padding: 24px;
   background: #f5f7fa;
+  box-sizing: border-box;
 }
