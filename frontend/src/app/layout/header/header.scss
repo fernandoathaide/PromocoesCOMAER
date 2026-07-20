@@ -1,13 +1,18 @@
 .toolbar {
   height: 64px;
   background: #003b6f;
-  color: white;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
 }
 
 .title {
   margin-left: 16px;
   font-size: 20px;
   font-weight: 600;
+  letter-spacing: .4px;
 }
 
 .spacer {

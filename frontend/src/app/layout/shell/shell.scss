@@ -4,13 +4,16 @@
 
 mat-sidenav {
   width: 260px;
-  border-right: 1px solid #e5e7eb;
+  border-right: 1px solid #d9d9d9;
   background: #ffffff;
+}
+
+mat-sidenav-content {
+  background: #f5f7fa;
 }
 
 .content {
   min-height: calc(100vh - 64px);
   padding: 24px;
-  background: #f5f7fa;
   box-sizing: border-box;
 }

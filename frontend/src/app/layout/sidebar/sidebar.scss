@@ -5,16 +5,22 @@
 }
 
 mat-nav-list {
-  padding-top: 8px;
-}
-
-.active {
-  background: rgba(0, 59, 111, 0.10);
-  border-left: 4px solid #003b6f;
+  padding-top: 12px;
 }
 
 a[mat-list-item] {
-  border-radius: 0;
+  margin: 4px 8px;
+  border-radius: 8px;
+  transition: background-color .2s ease;
+}
+
+a[mat-list-item]:hover {
+  background: rgba(0, 59, 111, .08);
+}
+
+.active {
+  background: rgba(0, 59, 111, .12);
+  border-left: 4px solid #003b6f;
 }
 
 mat-icon {
