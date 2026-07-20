@@ -1,5 +1,30 @@
+
+.toolbar {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+
+}
+
+mat-form-field {
+
+  width: 320px;
+
+}
+
 table {
   width: 100%;
+}
+
+mat-card {
+
+  padding: 16px;
+
 }
 
 mat-paginator {

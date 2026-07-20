@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Simulacao } from '../models/simulacao.model';
 
+import { API } from '../constants/api.constants';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +15,7 @@ export class SimulacaoService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly api =
-    `${environment.apiUrl}/simulacao`;
+  private readonly api = API.simulacao;
 
   getSimulacao(): Observable<Simulacao> {
 
