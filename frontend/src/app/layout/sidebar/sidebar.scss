@@ -1,11 +1,22 @@
-aside {
+:host {
+  display: block;
+  height: 100%;
+  background: #ffffff;
+}
 
-  width: 240px;
+mat-nav-list {
+  padding-top: 8px;
+}
 
-  background: white;
+.active {
+  background: rgba(0, 59, 111, 0.10);
+  border-left: 4px solid #003b6f;
+}
 
-  border-right: 1px solid #ddd;
+a[mat-list-item] {
+  border-radius: 0;
+}
 
-  padding: 20px;
-
+mat-icon {
+  color: #003b6f;
 }

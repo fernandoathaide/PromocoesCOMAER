@@ -1,5 +1,51 @@
-<aside>
+<mat-nav-list>
 
-  Sidebar
+  <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
 
-</aside>
+    <mat-icon matListItemIcon>dashboard</mat-icon>
+
+    <span matListItemTitle>Dashboard</span>
+
+  </a>
+
+  <a mat-list-item routerLink="/simulacao" routerLinkActive="active">
+
+    <mat-icon matListItemIcon>settings</mat-icon>
+
+    <span matListItemTitle>Simulação</span>
+
+  </a>
+
+  <a mat-list-item routerLink="/promocoes" routerLinkActive="active">
+
+    <mat-icon matListItemIcon>military_tech</mat-icon>
+
+    <span matListItemTitle>Promoções</span>
+
+  </a>
+
+  <a mat-list-item routerLink="/reservas" routerLinkActive="active">
+
+    <mat-icon matListItemIcon>assignment</mat-icon>
+
+    <span matListItemTitle>Reservas</span>
+
+  </a>
+
+  <a mat-list-item routerLink="/vagas" routerLinkActive="active">
+
+    <mat-icon matListItemIcon>bar_chart</mat-icon>
+
+    <span matListItemTitle>Vagas</span>
+
+  </a>
+
+  <a mat-list-item routerLink="/configuracoes" routerLinkActive="active">
+
+    <mat-icon matListItemIcon>settings_applications</mat-icon>
+
+    <span matListItemTitle>Configurações</span>
+
+  </a>
+
+</mat-nav-list>
