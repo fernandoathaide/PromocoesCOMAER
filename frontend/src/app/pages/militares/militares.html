@@ -1,1 +1,60 @@
-<p>militares works!</p>
+<h2>Militares</h2>
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="numero_ordem">
+
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Nº Ordem
+    </th>
+
+    <td mat-cell *matCellDef="let militar">
+      {{ militar.numero_ordem }}
+    </td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="nome">
+
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Nome
+    </th>
+
+    <td mat-cell *matCellDef="let militar">
+      {{ militar.nome }}
+    </td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="posto">
+
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Posto
+    </th>
+
+    <td mat-cell *matCellDef="let militar">
+      {{ militar.posto }}
+    </td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="quadro">
+
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Quadro
+    </th>
+
+    <td mat-cell *matCellDef="let militar">
+      {{ militar.quadro }}
+    </td>
+
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<mat-paginator [pageSize]="20" [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons>
+</mat-paginator>
