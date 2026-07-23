@@ -24,22 +24,16 @@ import { MatCardModule } from '@angular/material/card';
 
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
   templateUrl: './militares.html',
-  styleUrl: './militares.scss'
+  styleUrl: './militares.scss',
 })
 export class Militares implements OnInit, AfterViewInit {
-
   private readonly militarService = inject(MilitarService);
   filtro = '';
 
-  displayedColumns: string[] = [
-    'numero_ordem',
-    'nome',
-    'posto',
-    'quadro'
-  ];
+  displayedColumns: string[] = ['numero_ordem', 'nome', 'posto', 'quadro'];
 
   dataSource = new MatTableDataSource<Militar>();
 
@@ -50,9 +44,7 @@ export class Militares implements OnInit, AfterViewInit {
   sort!: MatSort;
 
   ngOnInit(): void {
-
     this.militarService.listar().subscribe({
-
       // next: militares => {
       //   this.dataSource.data = militares;
       //   this.dataSource.filterPredicate = (data, filtro) => {
@@ -68,48 +60,28 @@ export class Militares implements OnInit, AfterViewInit {
       //   };
       // },
 
-      next: militares => {
-
-        console.log('Militares recebidos:', militares);
-        console.log('Quantidade:', militares.length);
-
+      next: (militares) => {
         this.dataSource.data = militares;
 
         this.dataSource.filterPredicate = (data, filtro) => {
-
-          const texto = (
-            data.numero_ordem +
-            data.nome +
-            data.posto +
-            data.quadro
-          ).toLowerCase();
+          const texto = (data.numero_ordem + data.nome + data.posto + data.quadro).toLowerCase();
 
           return texto.includes(filtro);
-
         };
-
       },
 
-      error: erro => {
+      error: (erro) => {
         console.error(erro);
-      }
-
+      },
     });
-
   }
 
   ngAfterViewInit(): void {
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
   }
 
   aplicarFiltro(): void {
-
-    this.dataSource.filter =
-    this.filtro.trim().toLowerCase();
-
+    this.dataSource.filter = this.filtro.trim().toLowerCase();
   }
-
 }
