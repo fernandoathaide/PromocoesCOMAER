@@ -9,20 +9,15 @@ import { Militar } from '../models/militar.model';
 
 import { API } from '../constants/api.constants';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MilitarService {
-
   private readonly http = inject(HttpClient);
 
   private readonly api = API.militares;
 
   listar(): Observable<Militar[]> {
-
-    return this.http.get<Militar[]>(this.api);
-
+    return this.http.get<Militar[]>(`${this.api}/`, {});
   }
-
 }

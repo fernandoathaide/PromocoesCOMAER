@@ -1,17 +1,15 @@
 import { environment } from '../../../environments/environment';
 
 export const API = {
+  simulacao: `${environment.apiUrl}/simulacao`,
 
-  simulacao: `${environment.apiUrl}/simulacao/`,
+  executarSimulacao: `${environment.apiUrl}/simulacao/executar`,
 
-  executarSimulacao: `${environment.apiUrl}/simulacao/executar/`,
+  militares: `${environment.apiUrl}/militares`,
 
-  militares: `${environment.apiUrl}/militares/`,
+  promocoes: `${environment.apiUrl}/promocoes`,
 
-  promocoes: `${environment.apiUrl}/promocoes/`,
+  reservas: `${environment.apiUrl}/reservas`,
 
-  reservas: `${environment.apiUrl}/reservas/`,
-
-  vagas: `${environment.apiUrl}/vagas/`
-
+  vagas: `${environment.apiUrl}/vagas`,
 };

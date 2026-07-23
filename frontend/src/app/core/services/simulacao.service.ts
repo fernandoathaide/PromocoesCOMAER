@@ -15,7 +15,7 @@ export class SimulacaoService {
   private readonly api = API.simulacao;
 
   getSimulacao(): Observable<ResultadoSimulacao> {
-    return this.http.get<ResultadoSimulacao>(this.api);
+    return this.http.get<ResultadoSimulacao>(`${this.api}/`, {});
   }
 
   executarSimulacao(): Observable<ResultadoSimulacao> {
