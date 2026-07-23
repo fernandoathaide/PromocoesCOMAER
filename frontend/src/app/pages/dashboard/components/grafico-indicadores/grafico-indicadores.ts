@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration, ChartData, registerables, Chart } from 'chart.js';
+import { ChartConfiguration, ChartData } from 'chart.js';
 import { ResultadoSimulacao } from '../../../../core/models/resultado-simulacao.model';
 import { MatCardModule } from '@angular/material/card';
-
-Chart.register(...registerables);
 
 @Component({
   selector: 'app-grafico-indicadores',
