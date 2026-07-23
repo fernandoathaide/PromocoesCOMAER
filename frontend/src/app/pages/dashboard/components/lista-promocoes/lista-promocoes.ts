@@ -3,13 +3,14 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, Input, ViewChild } f
 import { MatCardModule } from '@angular/material/card';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 import { Promocao } from '../../../../core/models/promocao.model';
 
 @Component({
   selector: 'app-lista-promocoes',
   standalone: true,
-  imports: [MatCardModule, MatTableModule, MatSortModule],
+  imports: [MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule],
   templateUrl: './lista-promocoes.html',
   styleUrl: './lista-promocoes.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +18,9 @@ import { Promocao } from '../../../../core/models/promocao.model';
 export class ListaPromocoes implements AfterViewInit {
   @ViewChild(MatSort)
   sort!: MatSort;
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   private readonly dataSource = new MatTableDataSource<Promocao>();
 
@@ -33,6 +37,7 @@ export class ListaPromocoes implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   get tabela(): MatTableDataSource<Promocao> {
