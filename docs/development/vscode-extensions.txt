@@ -1,5 +1,7 @@
 aaron-bond.better-comments
+angular.ng-template
 bierner.markdown-mermaid
+bradlc.vscode-tailwindcss
 charliermarsh.ruff
 christian-kohler.path-intellisense
 codezombiech.gitignore
