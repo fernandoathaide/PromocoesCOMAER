@@ -2,13 +2,19 @@
   <app-stat-card titulo="Promoções" icone="military_tech" [valor]="resultado.indicadores.promocoes">
   </app-stat-card>
 
-  <app-stat-card titulo="Reservas" icone="assignment" [valor]="resultado.indicadores.reservas">
+  <app-stat-card
+    titulo="Reservas"
+    icone="assignment"
+    [valor]="resultado.indicadores.reservas"
+    cor="#696969"
+  >
   </app-stat-card>
 
   <app-stat-card
     titulo="Vagas Abertas"
     icone="meeting_room"
     [valor]="resultado.indicadores.vagas_abertas"
+    cor="#2e7d32"
   >
   </app-stat-card>
 
@@ -16,6 +22,7 @@
     titulo="Vagas Ocupadas"
     icone="person"
     [valor]="resultado.indicadores.vagas_ocupadas"
+    cor="#ef6c00"
   >
   </app-stat-card>
 
@@ -23,9 +30,15 @@
     titulo="Elegíveis"
     icone="groups"
     [valor]="resultado.indicadores.militares_elegiveis"
+    cor="#1565c0"
   >
   </app-stat-card>
 
-  <app-stat-card titulo="Saldo" icone="balance" [valor]="resultado.indicadores.saldo_vagas">
+  <app-stat-card
+    titulo="Saldo"
+    icone="balance"
+    [valor]="resultado.indicadores.saldo_vagas"
+    cor="red"
+  >
   </app-stat-card>
 </div>

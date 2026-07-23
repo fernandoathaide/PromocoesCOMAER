@@ -1,11 +1,11 @@
-<mat-card class="stat-card">
-
-  <mat-icon class="icon">
-    {{ icone() }}
-  </mat-icon>
+<mat-card class="stat-card" [style.--card-color]="cor()">
+  <div class="icon-container">
+    <mat-icon class="icon">
+      {{ icone() }}
+    </mat-icon>
+  </div>
 
   <div class="content">
-
     <span class="title">
       {{ titulo() }}
     </span>
@@ -13,7 +13,5 @@
     <span class="value">
       {{ valor() }}
     </span>
-
   </div>
-
 </mat-card>
