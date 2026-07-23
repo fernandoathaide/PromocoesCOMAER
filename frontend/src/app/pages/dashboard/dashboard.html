@@ -1,20 +1,28 @@
 <h2>Dashboard</h2>
 
-@if (simulacao) {
-  <div class="dashboard-grid">
-    <app-stat-card titulo="Militares" [valor]="simulacao.militares" icone="groups"> </app-stat-card>
+@if (simulacao; as dados) {
 
-    <app-stat-card titulo="Promoções" [valor]="simulacao.promocoes" icone="military_tech">
-    </app-stat-card>
+<div class="dashboard-grid">
 
-    <app-stat-card titulo="Reservas" [valor]="simulacao.reservas" icone="assignment">
-    </app-stat-card>
+  <app-stat-card titulo="Militares" [valor]="dados.militares" icone="groups">
+  </app-stat-card>
 
-    <app-stat-card titulo="Vagas" [valor]="simulacao.vagas" icone="bar_chart"> </app-stat-card>
+  <app-stat-card titulo="Promoções" [valor]="dados.promocoes" icone="military_tech">
+  </app-stat-card>
 
-    <app-stat-card titulo="Elegíveis" [valor]="simulacao.elegiveis" icone="verified">
-    </app-stat-card>
-  </div>
+  <app-stat-card titulo="Reservas" [valor]="dados.reservas" icone="assignment">
+  </app-stat-card>
+
+  <app-stat-card titulo="Vagas" [valor]="dados.vagas" icone="bar_chart">
+  </app-stat-card>
+
+  <app-stat-card titulo="Elegíveis" [valor]="dados.elegiveis" icone="verified">
+  </app-stat-card>
+
+</div>
+
 } @else {
-  <p>Carregando indicadores...</p>
+
+<p>Carregando indicadores...</p>
+
 }
