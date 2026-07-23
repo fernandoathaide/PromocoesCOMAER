@@ -1,0 +1,31 @@
+<div class="dashboard-grid">
+  <app-stat-card titulo="Promoções" icone="military_tech" [valor]="resultado.indicadores.promocoes">
+  </app-stat-card>
+
+  <app-stat-card titulo="Reservas" icone="assignment" [valor]="resultado.indicadores.reservas">
+  </app-stat-card>
+
+  <app-stat-card
+    titulo="Vagas Abertas"
+    icone="meeting_room"
+    [valor]="resultado.indicadores.vagas_abertas"
+  >
+  </app-stat-card>
+
+  <app-stat-card
+    titulo="Vagas Ocupadas"
+    icone="person"
+    [valor]="resultado.indicadores.vagas_ocupadas"
+  >
+  </app-stat-card>
+
+  <app-stat-card
+    titulo="Elegíveis"
+    icone="groups"
+    [valor]="resultado.indicadores.militares_elegiveis"
+  >
+  </app-stat-card>
+
+  <app-stat-card titulo="Saldo" icone="balance" [valor]="resultado.indicadores.saldo_vagas">
+  </app-stat-card>
+</div>

@@ -1,28 +1,14 @@
-<h2>Dashboard</h2>
+<header class="dashboard-header">
+  <h2>Dashboard</h2>
 
-@if (simulacao; as dados) {
+  <button mat-raised-button color="primary" (click)="executarSimulacao()">
+    Executar Simulação
+  </button>
+</header>
 
-<div class="dashboard-grid">
-
-  <app-stat-card titulo="Militares" [valor]="dados.militares" icone="groups">
-  </app-stat-card>
-
-  <app-stat-card titulo="Promoções" [valor]="dados.promocoes" icone="military_tech">
-  </app-stat-card>
-
-  <app-stat-card titulo="Reservas" [valor]="dados.reservas" icone="assignment">
-  </app-stat-card>
-
-  <app-stat-card titulo="Vagas" [valor]="dados.vagas" icone="bar_chart">
-  </app-stat-card>
-
-  <app-stat-card titulo="Elegíveis" [valor]="dados.elegiveis" icone="verified">
-  </app-stat-card>
-
-</div>
-
+@if (resultado; as dados) {
+  <app-painel-indicadores [resultado]="dados"> </app-painel-indicadores>
+  <app-lista-promocoes [promocoes]="dados.promocoes"> </app-lista-promocoes>
 } @else {
-
-<p>Carregando indicadores...</p>
-
+  <p>Carregando indicadores...</p>
 }

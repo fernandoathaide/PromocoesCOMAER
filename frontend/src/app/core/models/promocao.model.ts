@@ -1,5 +1,4 @@
 export interface Promocao {
-
   numero_ordem: string;
 
   nome: string;
@@ -7,5 +6,4 @@ export interface Promocao {
   posto_origem: string;
 
   posto_destino: string;
-
 }
