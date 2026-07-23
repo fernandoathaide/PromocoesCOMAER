@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
@@ -18,11 +19,7 @@ import { PainelIndicadores } from './components/painel-indicadores/painel-indica
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    PainelIndicadores,
-    ListaPromocoes,
-    AcaoSimulacao,
-  ],
+  imports: [PainelIndicadores, ListaPromocoes, AcaoSimulacao],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   changeDetection: ChangeDetectionStrategy.Default,
@@ -30,6 +27,7 @@ import { PainelIndicadores } from './components/painel-indicadores/painel-indica
 export class Dashboard implements OnInit {
   private readonly simulacaoService = inject(SimulacaoService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   resultado?: ResultadoSimulacao;
 
@@ -38,19 +36,16 @@ export class Dashboard implements OnInit {
   ngOnInit(): void {
     this.simulacaoService
       .getSimulacao()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-      )
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (dados) => {
           this.resultado = dados;
+          this.carregando = false;
+          this.atualizarView();
         },
 
         error: (erro) => {
-          console.error(
-            'Erro ao carregar indicadores do dashboard:',
-            erro,
-          );
+          console.error('Erro ao carregar indicadores do dashboard:', erro);
         },
       });
   }
@@ -60,13 +55,12 @@ export class Dashboard implements OnInit {
 
     this.simulacaoService
       .executarSimulacao()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-      )
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (dados) => {
           this.resultado = dados;
           this.carregando = false;
+          this.atualizarView();
         },
 
         error: (erro) => {
@@ -74,5 +68,13 @@ export class Dashboard implements OnInit {
           console.error(erro);
         },
       });
+  }
+
+  private atualizarView(): void {
+    // Angular 22 + Vite:
+    // Em alguns cenários a view não é atualizada automaticamente
+    // após o retorno do HttpClient. Força a sincronização da UI.
+    // Reavaliar após atualização do Angular.
+    this.cdr.markForCheck();
   }
 }
