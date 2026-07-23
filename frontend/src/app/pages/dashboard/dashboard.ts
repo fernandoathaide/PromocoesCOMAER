@@ -16,11 +16,12 @@ import { AcaoSimulacao } from './components/acao-simulacao/acao-simulacao';
 import { ListaPromocoes } from './components/lista-promocoes/lista-promocoes';
 import { PainelIndicadores } from './components/painel-indicadores/painel-indicadores';
 import { GraficoIndicadores } from './components/grafico-indicadores/grafico-indicadores';
+import { ResumoExecutivo } from './components/resumo-executivo/resumo-executivo';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PainelIndicadores, GraficoIndicadores, ListaPromocoes, AcaoSimulacao],
+  imports: [PainelIndicadores, GraficoIndicadores, ListaPromocoes, AcaoSimulacao, ResumoExecutivo],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   changeDetection: ChangeDetectionStrategy.Default,

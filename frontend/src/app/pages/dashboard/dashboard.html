@@ -7,6 +7,7 @@
 
 @if (resultado; as dados) {
   <app-painel-indicadores [resultado]="dados"> </app-painel-indicadores>
+  <app-resumo-executivo [resultado]="dados"> </app-resumo-executivo>
   <app-grafico-indicadores [resultado]="dados"> </app-grafico-indicadores>
   <app-lista-promocoes [promocoes]="dados.promocoes"> </app-lista-promocoes>
 } @else {
