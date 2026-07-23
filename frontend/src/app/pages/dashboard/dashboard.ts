@@ -11,11 +11,12 @@ import { SimulacaoService } from '../../core/services/simulacao.service';
 
 import { PainelIndicadores } from './components/painel-indicadores/painel-indicadores';
 import { ListaPromocoes } from './components/lista-promocoes/lista-promocoes';
+import { AcaoSimulacao } from './components/acao-simulacao/acao-simulacao';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PainelIndicadores, ListaPromocoes],
+  imports: [PainelIndicadores, ListaPromocoes, AcaoSimulacao],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   changeDetection: ChangeDetectionStrategy.Default,
@@ -25,6 +26,7 @@ export class Dashboard implements OnInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
   resultado?: ResultadoSimulacao;
+  carregando = false;
 
   ngOnInit(): void {
     this.simulacaoService.getSimulacao().subscribe({
@@ -44,15 +46,23 @@ export class Dashboard implements OnInit {
   }
 
   executarSimulacao(): void {
+    this.carregando = true;
+
     this.simulacaoService.executarSimulacao().subscribe({
       next: (dados) => {
         this.resultado = dados;
+
+        this.carregando = false;
 
         this.cdr.markForCheck();
       },
 
       error: (erro) => {
+        this.carregando = false;
+
         console.error(erro);
+
+        this.cdr.markForCheck();
       },
     });
   }

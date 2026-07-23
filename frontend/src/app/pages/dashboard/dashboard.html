@@ -1,9 +1,8 @@
 <header class="dashboard-header">
   <h2>Dashboard</h2>
 
-  <button mat-raised-button color="primary" (click)="executarSimulacao()">
-    Executar Simulação
-  </button>
+  <app-acao-simulacao [carregando]="carregando" (executar)="executarSimulacao()">
+  </app-acao-simulacao>
 </header>
 
 @if (resultado; as dados) {

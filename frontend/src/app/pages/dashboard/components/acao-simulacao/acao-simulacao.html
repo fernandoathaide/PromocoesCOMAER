@@ -1,0 +1,9 @@
+<div class="acoes-dashboard">
+  @if (carregando) {
+    <mat-spinner diameter="32"></mat-spinner>
+  } @else {
+    <button mat-raised-button color="primary" (click)="executarSimulacao()">
+      Executar Simulação
+    </button>
+  }
+</div>
