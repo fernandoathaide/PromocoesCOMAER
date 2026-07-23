@@ -1,13 +1,13 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Promoções Realizadas</mat-card-title>
+    <mat-card-title>Promoções Realizadas ({{ promocoes.length }})</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     @if (promocoes.length > 0) {
-      <table mat-table [dataSource]="promocoes" class="mat-elevation-z2">
+      <table mat-table [dataSource]="tabela" matSort class="mat-elevation-z2">
         <ng-container matColumnDef="numero_ordem">
-          <th mat-header-cell *matHeaderCellDef>Nº Ordem</th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Nº Ordem</th>
 
           <td mat-cell *matCellDef="let promocao">
             {{ promocao.numero_ordem }}
@@ -15,7 +15,7 @@
         </ng-container>
 
         <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Nome</th>
 
           <td mat-cell *matCellDef="let promocao">
             {{ promocao.nome }}
@@ -31,7 +31,7 @@
         </ng-container>
 
         <ng-container matColumnDef="posto_destino">
-          <th mat-header-cell *matHeaderCellDef>Posto Destino</th>
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Posto Destino</th>
 
           <td mat-cell *matCellDef="let promocao">
             {{ promocao.posto_destino }}
